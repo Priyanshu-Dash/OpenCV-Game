@@ -8,6 +8,12 @@ public class MagneticGameManager : MonoBehaviour
     [SerializeField] private Image leftImage;
     [SerializeField] private Image rightImage;
     
+
+    [Header("UI Elements")]
+    [SerializeField] private GameObject WinPanel;
+    [SerializeField] private GameObject LosePanel;
+
+
     [Header("Question System")]
     [SerializeField] private TextMeshProUGUI questionText; // TMP text field for displaying questions
     [SerializeField] private string[] questions = {
@@ -225,7 +231,8 @@ public class MagneticGameManager : MonoBehaviour
             // Update question to show success
             if (questionText != null)
             {
-                questionText.text = "✅ Correct! " + objectName + " is magnetic!";
+                WinPanel.SetActive(true);
+                //questionText.text = "✅ Correct! " + objectName + " is magnetic!";
                 // You can change text color to green here if needed
             }
             
@@ -239,7 +246,8 @@ public class MagneticGameManager : MonoBehaviour
             // Update question to show failure
             if (questionText != null)
             {
-                questionText.text = "❌ Wrong! " + objectName + " is not magnetic. Try again!";
+                LosePanel.SetActive(true);
+                //questionText.text = "❌ Wrong! " + objectName + " is not magnetic. Try again!";
                 // You can change text color to red here if needed
             }
             
