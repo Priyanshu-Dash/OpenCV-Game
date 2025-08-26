@@ -129,6 +129,9 @@ public class TriggerDetector : MonoBehaviour
             currentObject.transform.position = magnateObject.transform.position;
             isMovingToMagnate = false;
             Debug.Log("Object completely stuck to magnate - perfect overlap achieved at position: " + currentObject.transform.position);
+            
+            // Check the answer when object reaches the magnet
+            CheckAnswer();
             return;
         }
         
@@ -339,5 +342,73 @@ public class TriggerDetector : MonoBehaviour
     {
         isObjectActivated = false;
         Debug.Log("Object activation state reset for: " + currentObjectName);
+    }
+    
+    // Check if the selected object is the correct answer
+    private void CheckAnswer()
+    {
+        if (currentObject == null || magneticGameManager == null)
+        {
+            Debug.LogWarning("Cannot check answer - missing object or game manager reference");
+            return;
+        }
+        
+        // Get the object's sprite to check if it's magnetic
+        Sprite objectSprite = null;
+        SpriteRenderer spriteRenderer = currentObject.GetComponent<SpriteRenderer>();
+        Image imageComponent = currentObject.GetComponent<Image>();
+        
+        if (spriteRenderer != null)
+        {
+            objectSprite = spriteRenderer.sprite;
+        }
+        else if (imageComponent != null)
+        {
+            objectSprite = imageComponent.sprite;
+        }
+        
+        if (objectSprite == null)
+        {
+            Debug.LogWarning("Cannot check answer - no sprite found on object: " + currentObject.name);
+            return;
+        }
+        
+        // Check if the object is magnetic
+        bool isObjectMagnetic = magneticGameManager.IsSpriteMagnetic(objectSprite);
+        
+        // Determine if this is the correct answer
+        // The correct answer should be a magnetic object (since it's attracted to the magnet)
+        bool isCorrectAnswer = isObjectMagnetic;
+        
+        // Log the result
+        if (isCorrectAnswer)
+        {
+            Debug.Log("✅ CORRECT ANSWER! " + currentObject.name + " is magnetic and will stick to the magnet.");
+            // You can add success effects here (particles, sounds, etc.)
+        }
+        else
+        {
+            Debug.Log("❌ WRONG ANSWER! " + currentObject.name + " is not magnetic and shouldn't stick to the magnet.");
+            // You can add failure effects here (particles, sounds, etc.)
+        }
+        
+        // Call the game manager to handle the answer result
+        if (magneticGameManager != null)
+        {
+            magneticGameManager.HandleAnswerResult(isCorrectAnswer, currentObject.name, objectSprite);
+        }
+        
+        // Reset the activation state for the next object
+        isObjectActivated = false;
+    }
+    
+    // Public method to manually check an answer
+    public void CheckAnswerManual(GameObject targetObject)
+    {
+        if (targetObject != null)
+        {
+            currentObject = targetObject;
+            CheckAnswer();
+        }
     }
 }
