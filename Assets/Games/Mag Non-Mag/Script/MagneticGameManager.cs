@@ -26,6 +26,7 @@ public class MagneticGameManager : MonoBehaviour
     [SerializeField] private int maxHealth = 3; // Maximum health
     [SerializeField] private int pointsPerCorrectAnswer = 10;
     [SerializeField] private float levelRestartDelay = 2f; // Delay before restarting level
+    [SerializeField] private int correctAnswersToWin = 10; // Number of correct answers needed to win
 
     [Header("Question System")]
     [SerializeField] private TextMeshProUGUI questionText; // TMP text field for displaying questions
@@ -56,6 +57,7 @@ public class MagneticGameManager : MonoBehaviour
     
     private bool isLevelComplete = false;
     private bool isWaitingForRestart = false;
+    private int totalCorrectAnswers = 0; // Track total correct answers for win condition
     
     void Start()
     {
@@ -409,6 +411,17 @@ public class MagneticGameManager : MonoBehaviour
             // Correct answer - show success feedback
             ShowSuccessFeedback(objectName);
             
+            // Increment total correct answers
+            totalCorrectAnswers++;
+            Debug.Log("Correct answers: " + totalCorrectAnswers + "/" + correctAnswersToWin);
+            
+            // Check for win condition
+            if (totalCorrectAnswers >= correctAnswersToWin)
+            {
+                GameWin();
+                return; // Exit early, don't continue with normal level completion
+            }
+            
             // Update question to show success
             if (questionText != null)
             {
@@ -718,6 +731,7 @@ public class MagneticGameManager : MonoBehaviour
         currentLevel = 1;
         currentScore = 0;
         currentHealth = maxHealth; // Reset health to max
+        totalCorrectAnswers = 0; // Reset win condition
         isLevelComplete = false;
         isWaitingForRestart = false;
         
@@ -799,10 +813,44 @@ public class MagneticGameManager : MonoBehaviour
         isWaitingForRestart = true;
     }
     
+    // Handle game win
+    private void GameWin()
+    {
+        Debug.Log("🏆 GAME WIN! You answered " + totalCorrectAnswers + " questions correctly!");
+        
+        // Show win panel if available
+        if (WinPanel != null)
+        {
+            WinPanel.SetActive(true);
+        }
+        
+        // Update question text to show victory
+        if (questionText != null)
+        {
+            questionText.text = "🏆 Congratulations! You won the game!";
+        }
+        
+        // Stop the game - player has won
+        isLevelComplete = true;
+        isWaitingForRestart = true;
+        
+        // You can add additional win effects here:
+        // - Play victory sound
+        // - Show victory particles
+        // - Display final score
+        // - Show restart button
+    }
+    
     // Check if game is over
     public bool IsGameOver()
     {
         return currentHealth <= 0;
+    }
+    
+    // Check if game is won
+    public bool IsGameWon()
+    {
+        return totalCorrectAnswers >= correctAnswersToWin;
     }
     
     // Restore health (for power-ups or special events)
@@ -891,12 +939,31 @@ public class MagneticGameManager : MonoBehaviour
         return currentHealth;
     }
     
+    // Get total correct answers
+    public int GetTotalCorrectAnswers()
+    {
+        return totalCorrectAnswers;
+    }
+    
+    // Get correct answers needed to win
+    public int GetCorrectAnswersToWin()
+    {
+        return correctAnswersToWin;
+    }
+    
+    // Get win progress as percentage
+    public float GetWinProgress()
+    {
+        return (float)totalCorrectAnswers / correctAnswersToWin;
+    }
+    
     // Reset the entire game (start over from level 1)
     public void ResetGame()
     {
         currentLevel = 1;
         currentScore = 0;
         currentHealth = maxHealth; // Reset health to max
+        totalCorrectAnswers = 0; // Reset win condition
         isLevelComplete = false;
         isWaitingForRestart = false;
         
@@ -965,6 +1032,14 @@ public class MagneticGameManager : MonoBehaviour
     {
         Debug.Log("TestIncreaseHealth() called manually");
         RestoreHealth(1);
+    }
+    
+    // Test method to manually trigger win (for debugging)
+    public void TestWin()
+    {
+        Debug.Log("TestWin() called manually");
+        totalCorrectAnswers = correctAnswersToWin;
+        GameWin();
     }
     
     // Get current question type

@@ -911,13 +911,22 @@ MonoBehaviour:
   maxHealth: 3
   pointsPerCorrectAnswer: 1
   levelRestartDelay: 2
+  correctAnswersToWin: 10
   questionText: {fileID: 740164058}
-  questions:
+  magneticQuestions:
   - Which object is magnetic?
   - Can you identify the magnetic material?
   - Which item will stick to the magnet?
   - Find the magnetic object!
   - Which one is attracted to magnets?
+  nonMagneticQuestions:
+  - Which object is NOT magnetic?
+  - Can you identify the non-magnetic material?
+  - Which item will NOT stick to the magnet?
+  - Find the non-magnetic object!
+  - Which one is NOT attracted to magnets?
+  - Which object will repel from magnets?
+  - Identify the material that won't stick to magnets
   showQuestions: 1
   magneticSprites:
   - {fileID: 21300000, guid: 168f9b5df4d79d946b7ef36605baf744, type: 3}
@@ -1695,115 +1704,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 723.6}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1001 &1975634264
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1722666691240839940, guid: 280f3bb196f490c4385f7e4da97f50e1, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 1200
-      objectReference: {fileID: 0}
-    - target: {fileID: 1722666691240839940, guid: 280f3bb196f490c4385f7e4da97f50e1, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 540
-      objectReference: {fileID: 0}
-    - target: {fileID: 1722666691240839940, guid: 280f3bb196f490c4385f7e4da97f50e1, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1722666691240839940, guid: 280f3bb196f490c4385f7e4da97f50e1, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1722666691240839940, guid: 280f3bb196f490c4385f7e4da97f50e1, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1722666691240839940, guid: 280f3bb196f490c4385f7e4da97f50e1, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1722666691240839940, guid: 280f3bb196f490c4385f7e4da97f50e1, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1722666691240839940, guid: 280f3bb196f490c4385f7e4da97f50e1, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1722666691240839940, guid: 280f3bb196f490c4385f7e4da97f50e1, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1722666691240839940, guid: 280f3bb196f490c4385f7e4da97f50e1, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2969857815660705402, guid: 280f3bb196f490c4385f7e4da97f50e1, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2969857815660705402, guid: 280f3bb196f490c4385f7e4da97f50e1, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2969857815660705402, guid: 280f3bb196f490c4385f7e4da97f50e1, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 2394
-      objectReference: {fileID: 0}
-    - target: {fileID: 2969857815660705402, guid: 280f3bb196f490c4385f7e4da97f50e1, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -35
-      objectReference: {fileID: 0}
-    - target: {fileID: 3861711306212602518, guid: 280f3bb196f490c4385f7e4da97f50e1, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3861711306212602518, guid: 280f3bb196f490c4385f7e4da97f50e1, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3861711306212602518, guid: 280f3bb196f490c4385f7e4da97f50e1, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 1335
-      objectReference: {fileID: 0}
-    - target: {fileID: 3861711306212602518, guid: 280f3bb196f490c4385f7e4da97f50e1, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -30
-      objectReference: {fileID: 0}
-    - target: {fileID: 5382661644720746693, guid: 280f3bb196f490c4385f7e4da97f50e1, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5382661644720746693, guid: 280f3bb196f490c4385f7e4da97f50e1, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5382661644720746693, guid: 280f3bb196f490c4385f7e4da97f50e1, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 1197
-      objectReference: {fileID: 0}
-    - target: {fileID: 5382661644720746693, guid: 280f3bb196f490c4385f7e4da97f50e1, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -30
-      objectReference: {fileID: 0}
-    - target: {fileID: 8677645155703596889, guid: 280f3bb196f490c4385f7e4da97f50e1, type: 3}
-      propertyPath: m_Name
-      value: Big Bigger Biggest
-      objectReference: {fileID: 0}
-    - target: {fileID: 8677645155703596889, guid: 280f3bb196f490c4385f7e4da97f50e1, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 280f3bb196f490c4385f7e4da97f50e1, type: 3}
 --- !u!224 &203399509159450408
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4010,5 +3910,4 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 6984365646389085504}
-  - {fileID: 1975634264}
   - {fileID: 4735817671387351999}
