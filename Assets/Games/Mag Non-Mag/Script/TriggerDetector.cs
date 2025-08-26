@@ -376,19 +376,32 @@ public class TriggerDetector : MonoBehaviour
         // Check if the object is magnetic
         bool isObjectMagnetic = magneticGameManager.IsSpriteMagnetic(objectSprite);
         
-        // Determine if this is the correct answer
-        // The correct answer should be a magnetic object (since it's attracted to the magnet)
-        bool isCorrectAnswer = isObjectMagnetic;
+        // Determine if this is the correct answer based on the current question type
+        bool isCorrectAnswer = magneticGameManager.IsObjectCorrectAnswer(currentObject);
         
-        // Log the result
+        // Log the result based on question type
         if (isCorrectAnswer)
         {
-            Debug.Log("✅ CORRECT ANSWER! " + currentObject.name + " is magnetic and will stick to the magnet.");
+            if (magneticGameManager.IsCurrentQuestionAboutMagnetic())
+            {
+                Debug.Log("✅ CORRECT ANSWER! " + currentObject.name + " is magnetic and will stick to the magnet.");
+            }
+            else
+            {
+                Debug.Log("✅ CORRECT ANSWER! " + currentObject.name + " is non-magnetic and won't stick to the magnet.");
+            }
             // You can add success effects here (particles, sounds, etc.)
         }
         else
         {
-            Debug.Log("❌ WRONG ANSWER! " + currentObject.name + " is not magnetic and shouldn't stick to the magnet.");
+            if (magneticGameManager.IsCurrentQuestionAboutMagnetic())
+            {
+                Debug.Log("❌ WRONG ANSWER! " + currentObject.name + " is not magnetic and won't stick to the magnet.");
+            }
+            else
+            {
+                Debug.Log("❌ WRONG ANSWER! " + currentObject.name + " is magnetic and will stick to the magnet.");
+            }
             // You can add failure effects here (particles, sounds, etc.)
         }
         

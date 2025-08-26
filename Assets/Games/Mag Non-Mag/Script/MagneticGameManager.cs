@@ -29,14 +29,26 @@ public class MagneticGameManager : MonoBehaviour
 
     [Header("Question System")]
     [SerializeField] private TextMeshProUGUI questionText; // TMP text field for displaying questions
-    [SerializeField] private string[] questions = {
+    [SerializeField] private string[] magneticQuestions = {
         "Which object is magnetic?",
         "Can you identify the magnetic material?",
         "Which item will stick to the magnet?",
         "Find the magnetic object!",
         "Which one is attracted to magnets?"
     };
+    [SerializeField] private string[] nonMagneticQuestions = {
+        "Which object is NOT magnetic?",
+        "Can you identify the non-magnetic material?",
+        "Which item will NOT stick to the magnet?",
+        "Find the non-magnetic object!",
+        "Which one is NOT attracted to magnets?",
+        "Which object will repel from magnets?",
+        "Identify the material that won't stick to magnets"
+    };
     [SerializeField] private bool showQuestions = true; // Toggle for question display
+    
+    // Track current question type for answer checking
+    private bool currentQuestionAsksAboutMagnetic = true; // true = magnetic question, false = non-magnetic question
     
     [Header("Sprite Arrays")]
     [SerializeField] public Sprite[] magneticSprites;      // Made public for access
@@ -143,23 +155,99 @@ public class MagneticGameManager : MonoBehaviour
     // Display a random question
     public void DisplayRandomQuestion()
     {
-        if (questionText != null && showQuestions && questions.Length > 0)
+        if (questionText != null && showQuestions)
         {
-            int randomIndex = Random.Range(0, questions.Length);
-            questionText.text = questions[randomIndex];
-            questionText.gameObject.SetActive(true);
-            Debug.Log("Displaying question: " + questions[randomIndex]);
+            // Randomly decide whether to ask about magnetic or non-magnetic objects
+            bool askAboutMagnetic = Random.Range(0, 2) == 0;
+            
+            if (askAboutMagnetic && magneticQuestions.Length > 0)
+            {
+                int randomIndex = Random.Range(0, magneticQuestions.Length);
+                questionText.text = magneticQuestions[randomIndex];
+                questionText.gameObject.SetActive(true);
+                currentQuestionAsksAboutMagnetic = true; // Track question type
+                Debug.Log("Displaying magnetic question: " + magneticQuestions[randomIndex]);
+            }
+            else if (!askAboutMagnetic && nonMagneticQuestions.Length > 0)
+            {
+                int randomIndex = Random.Range(0, nonMagneticQuestions.Length);
+                questionText.text = nonMagneticQuestions[randomIndex];
+                questionText.gameObject.SetActive(true);
+                currentQuestionAsksAboutMagnetic = false; // Track question type
+                Debug.Log("Displaying non-magnetic question: " + nonMagneticQuestions[randomIndex]);
+            }
         }
     }
     
-    // Display a specific question by index
-    public void DisplayQuestion(int questionIndex)
+    // Display a random magnetic question
+    public void DisplayRandomMagneticQuestion()
     {
-        if (questionText != null && showQuestions && questionIndex >= 0 && questionIndex < questions.Length)
+        if (questionText != null && showQuestions && magneticQuestions.Length > 0)
         {
-            questionText.text = questions[questionIndex];
+            int randomIndex = Random.Range(0, magneticQuestions.Length);
+            questionText.text = magneticQuestions[randomIndex];
             questionText.gameObject.SetActive(true);
-            Debug.Log("Displaying question " + questionIndex + ": " + questions[questionIndex]);
+            currentQuestionAsksAboutMagnetic = true; // Track question type
+            Debug.Log("Displaying random magnetic question: " + magneticQuestions[randomIndex]);
+        }
+    }
+    
+    // Display a random non-magnetic question
+    public void DisplayRandomNonMagneticQuestion()
+    {
+        if (questionText != null && showQuestions && nonMagneticQuestions.Length > 0)
+        {
+            int randomIndex = Random.Range(0, nonMagneticQuestions.Length);
+            questionText.text = nonMagneticQuestions[randomIndex];
+            questionText.gameObject.SetActive(true);
+            currentQuestionAsksAboutMagnetic = false; // Track question type
+            Debug.Log("Displaying random non-magnetic question: " + nonMagneticQuestions[randomIndex]);
+        }
+    }
+    
+    // Display a specific question by index (0 = magnetic, 1 = non-magnetic)
+    public void DisplayQuestion(int questionType, int questionIndex)
+    {
+        if (questionText != null && showQuestions)
+        {
+            if (questionType == 0 && questionIndex >= 0 && questionIndex < magneticQuestions.Length)
+            {
+                questionText.text = magneticQuestions[questionIndex];
+                questionText.gameObject.SetActive(true);
+                currentQuestionAsksAboutMagnetic = true; // Track question type
+                Debug.Log("Displaying magnetic question " + questionIndex + ": " + magneticQuestions[questionIndex]);
+            }
+            else if (questionType == 1 && questionIndex >= 0 && questionIndex < nonMagneticQuestions.Length)
+            {
+                questionText.text = nonMagneticQuestions[questionIndex];
+                questionText.gameObject.SetActive(true);
+                currentQuestionAsksAboutMagnetic = false; // Track question type
+                Debug.Log("Displaying non-magnetic question " + questionIndex + ": " + nonMagneticQuestions[questionIndex]);
+            }
+        }
+    }
+    
+    // Display a specific magnetic question by index
+    public void DisplayMagneticQuestion(int questionIndex)
+    {
+        if (questionText != null && showQuestions && questionIndex >= 0 && questionIndex < magneticQuestions.Length)
+        {
+            questionText.text = magneticQuestions[questionIndex];
+            questionText.gameObject.SetActive(true);
+            currentQuestionAsksAboutMagnetic = true; // Track question type
+            Debug.Log("Displaying magnetic question " + questionIndex + ": " + magneticQuestions[questionIndex]);
+        }
+    }
+    
+    // Display a specific non-magnetic question by index
+    public void DisplayNonMagneticQuestion(int questionIndex)
+    {
+        if (questionText != null && showQuestions && questionIndex >= 0 && questionIndex < nonMagneticQuestions.Length)
+        {
+            questionText.text = nonMagneticQuestions[questionIndex];
+            questionText.gameObject.SetActive(true);
+            currentQuestionAsksAboutMagnetic = false; // Track question type
+            Debug.Log("Displaying non-magnetic question " + questionIndex + ": " + nonMagneticQuestions[questionIndex]);
         }
     }
     
@@ -210,36 +298,107 @@ public class MagneticGameManager : MonoBehaviour
     // Get total number of questions
     public int GetQuestionCount()
     {
-        return questions.Length;
+        return magneticQuestions.Length + nonMagneticQuestions.Length;
+    }
+    
+    // Get total number of magnetic questions
+    public int GetMagneticQuestionCount()
+    {
+        return magneticQuestions.Length;
+    }
+    
+    // Get total number of non-magnetic questions
+    public int GetNonMagneticQuestionCount()
+    {
+        return nonMagneticQuestions.Length;
     }
     
     // Get all questions as an array
     public string[] GetAllQuestions()
     {
-        return questions;
+        string[] allQuestions = new string[magneticQuestions.Length + nonMagneticQuestions.Length];
+        magneticQuestions.CopyTo(allQuestions, 0);
+        nonMagneticQuestions.CopyTo(allQuestions, magneticQuestions.Length);
+        return allQuestions;
     }
     
-    // Add a new question to the array
+    // Get all magnetic questions
+    public string[] GetMagneticQuestions()
+    {
+        return magneticQuestions;
+    }
+    
+    // Get all non-magnetic questions
+    public string[] GetNonMagneticQuestions()
+    {
+        return nonMagneticQuestions;
+    }
+    
+    // Add a new magnetic question to the array
+    public void AddMagneticQuestion(string newQuestion)
+    {
+        if (!string.IsNullOrEmpty(newQuestion))
+        {
+            System.Array.Resize(ref magneticQuestions, magneticQuestions.Length + 1);
+            magneticQuestions[magneticQuestions.Length - 1] = newQuestion;
+            Debug.Log("Added new magnetic question: " + newQuestion);
+        }
+    }
+    
+    // Add a new non-magnetic question to the array
+    public void AddNonMagneticQuestion(string newQuestion)
+    {
+        if (!string.IsNullOrEmpty(newQuestion))
+        {
+            System.Array.Resize(ref nonMagneticQuestions, nonMagneticQuestions.Length + 1);
+            nonMagneticQuestions[nonMagneticQuestions.Length - 1] = newQuestion;
+            Debug.Log("Added new non-magnetic question: " + newQuestion);
+        }
+    }
+    
+    // Add a new question to the appropriate array (auto-detect type)
     public void AddQuestion(string newQuestion)
     {
         if (!string.IsNullOrEmpty(newQuestion))
         {
-            System.Array.Resize(ref questions, questions.Length + 1);
-            questions[questions.Length - 1] = newQuestion;
-            Debug.Log("Added new question: " + newQuestion);
+            // Auto-detect if it's a magnetic or non-magnetic question
+            string lowerQuestion = newQuestion.ToLower();
+            if (lowerQuestion.Contains("not") || lowerQuestion.Contains("non") || lowerQuestion.Contains("won't") || lowerQuestion.Contains("repel"))
+            {
+                AddNonMagneticQuestion(newQuestion);
+            }
+            else
+            {
+                AddMagneticQuestion(newQuestion);
+            }
         }
     }
     
     // Clear all questions
     public void ClearQuestions()
     {
-        questions = new string[0];
+        magneticQuestions = new string[0];
+        nonMagneticQuestions = new string[0];
         if (questionText != null)
         {
             questionText.text = "";
             questionText.gameObject.SetActive(false);
         }
         Debug.Log("All questions cleared");
+    }
+    
+    // Clear only magnetic questions
+    public void ClearMagneticQuestions()
+    {
+        magneticQuestions = new string[0];
+        Debug.Log("Magnetic questions cleared");
+    }
+    
+    // Clear only non-magnetic questions
+    public void ClearNonMagneticQuestions()
+    {
+        nonMagneticQuestions = new string[0];
+        Debug.Log("Non-magnetic questions cleared");
     }
     
     // Handle the result of an answer check
@@ -254,7 +413,7 @@ public class MagneticGameManager : MonoBehaviour
             if (questionText != null)
             {
                 WinPanel.SetActive(true);
-                //questionText.text = "✅ Correct! " + objectName + " is magnetic!";
+                //questionText.text = "✅ Correct! " + objectName + " is the right choice!";
                 // You can change text color to green here if needed
             }
             
@@ -262,7 +421,7 @@ public class MagneticGameManager : MonoBehaviour
             UpdateScore(pointsPerCorrectAnswer);
             CompleteLevel();
             
-            Debug.Log("🎉 SUCCESS: " + objectName + " is the correct magnetic object!");
+            Debug.Log("🎉 SUCCESS: " + objectName + " is the correct answer!");
         }
         else
         {
@@ -279,14 +438,14 @@ public class MagneticGameManager : MonoBehaviour
             if (questionText != null)
             {
                 LosePanel.SetActive(true);
-                //questionText.text = "❌ Wrong! " + objectName + " is not magnetic. Try again!";
+                //questionText.text = "❌ Wrong! " + objectName + " is not the right choice. Try again!";
                 // You can change text color to red here if needed
             }
             
             // For wrong answers, allow retry after a delay
             StartCoroutine(RetryLevelAfterDelay());
             
-            Debug.Log("💥 FAILURE: " + objectName + " is not magnetic. Wrong choice! Health: " + currentHealth);
+            Debug.Log("💥 FAILURE: " + objectName + " is not the right choice! Health: " + currentHealth);
         }
         
         // You can add additional game logic here:
@@ -320,8 +479,55 @@ public class MagneticGameManager : MonoBehaviour
         Debug.Log("Failure feedback triggered for: " + objectName);
     }
     
-    // Get the correct answer (magnetic object)
+    // Get the correct answer based on current question type
     public string GetCorrectAnswer()
+    {
+        if (currentQuestionAsksAboutMagnetic)
+        {
+            // Question asks for magnetic objects
+            if (leftImage != null && leftImage.sprite != null)
+            {
+                if (IsSpriteMagnetic(leftImage.sprite))
+                {
+                    return "Left object (" + leftImage.sprite.name + ")";
+                }
+            }
+            
+            if (rightImage != null && rightImage.sprite != null)
+            {
+                if (IsSpriteMagnetic(rightImage.sprite))
+                {
+                    return "Right object (" + rightImage.sprite.name + ")";
+                }
+            }
+            
+            return "No magnetic object found";
+        }
+        else
+        {
+            // Question asks for non-magnetic objects
+            if (leftImage != null && leftImage.sprite != null)
+            {
+                if (!IsSpriteMagnetic(leftImage.sprite))
+                {
+                    return "Left object (" + leftImage.sprite.name + ")";
+                }
+            }
+            
+            if (rightImage != null && rightImage.sprite != null)
+            {
+                if (!IsSpriteMagnetic(rightImage.sprite))
+                {
+                    return "Right object (" + rightImage.sprite.name + ")";
+                }
+            }
+            
+            return "No non-magnetic object found";
+        }
+    }
+    
+    // Get the correct answer for magnetic questions (magnetic object)
+    public string GetCorrectAnswerForMagnetic()
     {
         // Find which image has the magnetic sprite
         if (leftImage != null && leftImage.sprite != null)
@@ -341,6 +547,29 @@ public class MagneticGameManager : MonoBehaviour
         }
         
         return "No magnetic object found";
+    }
+    
+    // Get the correct answer for non-magnetic questions (non-magnetic object)
+    public string GetCorrectAnswerForNonMagnetic()
+    {
+        // Find which image has the non-magnetic sprite
+        if (leftImage != null && leftImage.sprite != null)
+        {
+            if (!IsSpriteMagnetic(leftImage.sprite))
+            {
+                return "Left object (" + leftImage.sprite.name + ")";
+            }
+        }
+        
+        if (rightImage != null && rightImage.sprite != null)
+        {
+            if (!IsSpriteMagnetic(rightImage.sprite))
+            {
+                return "Right object (" + rightImage.sprite.name + ")";
+            }
+        }
+        
+        return "No non-magnetic object found";
     }
     
     // Check if a specific object is the correct answer
@@ -363,7 +592,64 @@ public class MagneticGameManager : MonoBehaviour
         
         if (objectSprite == null) return false;
         
+        bool isObjectMagnetic = IsSpriteMagnetic(objectSprite);
+        
+        // For magnetic questions: correct answer is magnetic objects
+        // For non-magnetic questions: correct answer is non-magnetic objects
+        if (currentQuestionAsksAboutMagnetic)
+        {
+            return isObjectMagnetic; // Question asks for magnetic objects
+        }
+        else
+        {
+            return !isObjectMagnetic; // Question asks for non-magnetic objects
+        }
+    }
+    
+    // Check if a specific object is the correct answer for magnetic questions
+    public bool IsObjectCorrectAnswerForMagnetic(GameObject targetObject)
+    {
+        if (targetObject == null) return false;
+        
+        Sprite objectSprite = null;
+        SpriteRenderer spriteRenderer = targetObject.GetComponent<SpriteRenderer>();
+        Image imageComponent = targetObject.GetComponent<Image>();
+        
+        if (spriteRenderer != null)
+        {
+            objectSprite = spriteRenderer.sprite;
+        }
+        else if (imageComponent != null)
+        {
+            objectSprite = imageComponent.sprite;
+        }
+        
+        if (objectSprite == null) return false;
+        
         return IsSpriteMagnetic(objectSprite);
+    }
+    
+    // Check if a specific object is the correct answer for non-magnetic questions
+    public bool IsObjectCorrectAnswerForNonMagnetic(GameObject targetObject)
+    {
+        if (targetObject == null) return false;
+        
+        Sprite objectSprite = null;
+        SpriteRenderer spriteRenderer = targetObject.GetComponent<SpriteRenderer>();
+        Image imageComponent = targetObject.GetComponent<Image>();
+        
+        if (spriteRenderer != null)
+        {
+            objectSprite = spriteRenderer.sprite;
+        }
+        else if (imageComponent != null)
+        {
+            objectSprite = imageComponent.sprite;
+        }
+        
+        if (objectSprite == null) return false;
+        
+        return !IsSpriteMagnetic(objectSprite);
     }
     
     // Store initial positions of images
@@ -679,5 +965,25 @@ public class MagneticGameManager : MonoBehaviour
     {
         Debug.Log("TestIncreaseHealth() called manually");
         RestoreHealth(1);
+    }
+    
+    // Get current question type
+    public bool IsCurrentQuestionAboutMagnetic()
+    {
+        return currentQuestionAsksAboutMagnetic;
+    }
+    
+    // Get current question type as string
+    public string GetCurrentQuestionType()
+    {
+        return currentQuestionAsksAboutMagnetic ? "Magnetic" : "Non-Magnetic";
+    }
+    
+    // Debug current question state
+    public void DebugCurrentQuestionState()
+    {
+        Debug.Log("Current Question Type: " + GetCurrentQuestionType());
+        Debug.Log("Current Question Text: " + GetCurrentQuestion());
+        Debug.Log("Correct Answer: " + GetCorrectAnswer());
     }
 }
