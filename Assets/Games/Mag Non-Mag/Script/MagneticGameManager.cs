@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro; // Add TextMeshPro support
+using TMPro;
 
 public class MagneticGameManager : MonoBehaviour
 {
