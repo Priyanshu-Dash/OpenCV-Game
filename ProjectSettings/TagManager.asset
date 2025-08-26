@@ -13,6 +13,7 @@ TagManager:
   - BothWrists
   - Left
   - Right
+  - magnate
   layers:
   - Default
   - TransparentFX
