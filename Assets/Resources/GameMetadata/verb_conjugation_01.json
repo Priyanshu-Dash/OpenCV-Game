@@ -1,0 +1,15 @@
+{
+  "gameId": "verb_conjugation_01",
+  "title": "QuestionGamePrefab",
+  "learningOutcomes": [
+    "apply correct verb form",
+    "subject verb agreement",
+    "verb usage in context"
+  ],
+  "keywords": ["verb", "subject", "agreement", "grammar"],
+  "difficulty": "medium",
+  "configurableParameters": {
+    "tense": "present",
+    "subjectType": "singular"
+  }
+}

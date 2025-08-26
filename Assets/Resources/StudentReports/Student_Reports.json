@@ -1,0 +1,580 @@
+{
+  "students": [
+    {
+      "studentId": "12",
+      "studentName": "H Shravanthika",
+      "grade": "7A",
+      "score": "54%",
+      "learningGaps": [
+        "Identify the usage of the given modal auxiliary",  
+        "Classify the given article as definite or indefinite",  
+        "Identify the sentences that use a positive degree of comparison",  
+        "Apply the correct degree of an adverb as per the given sentence",  
+        "Identify the type of given adverb",  
+        "Identify the correct transitive verbs",  
+        "Apply the correct form of the verb as per the subject",  
+        "Analyse the sentence to see if the correct form of the verb is used as per the context"  
+      ]
+    },
+    {
+      "studentId": "33",
+      "studentName": "TANMAYI M",
+      "grade": "7A",
+      "score": "52%",
+      "learningGaps": [
+        "Identify the usage of the given modal auxiliary",  
+        "Classify the given article as definite or indefinite",  
+        "Identify the correct common noun",  
+        "Identify the correct emphatic pronoun",  
+        "Identify the correct adjective of quality",  
+        "Identify the type of the given determiner",  
+        "Classify a verb as singular or plural",  
+        "Identify the correct demonstrative adjective"  
+      ]
+    },
+    {
+      "studentId": "3",
+      "studentName": "Akshitha Konakondala",
+      "grade": "7A",
+      "score": "51%",
+      "learningGaps": [
+        "Identify the usage of the given modal auxiliary",  
+        "Classify the given article as definite or indefinite",  
+        "Construct an abstract noun from a given word using a suffix",  
+        "Identify the correct cardinal",  
+        "Apply the correct quantifier as per the context",  
+        "Analyse whether the indefinite pronoun is used correctly",  
+        "Identify the correct common noun",  
+        "Identify the correct transitive verbs"  
+      ]
+    },
+    {
+      "studentId": "6",
+      "studentName": "ANUSRI DESAI",
+      "grade": "7A",
+      "score": "51%",
+      "learningGaps": [
+        "Identify the usage of the given modal auxiliary",  
+        "Classify the given article as definite or indefinite",  
+        "Identify the correct common noun",  
+        "Identify the correct emphatic pronoun",  
+        "Identify the correct adjective of quality",  
+        "Identify the type of the given determiner",  
+        "Classify a verb as singular or plural",  
+        "Identify the correct demonstrative adjective"  
+      ]
+    },
+    {
+      "studentId": "9",
+      "studentName": "Charan L",
+      "grade": "7A",
+      "score": "49%",
+      "learningGaps": [
+        "Identify the usage of the given modal auxiliary",  
+        "Classify the given article as definite or indefinite",  
+        "Identify the sentences that use a positive degree of comparison",  
+        "Apply the correct degree of an adverb as per the given sentence",  
+        "Identify the type of given adverb",  
+        "Identify the correct transitive verbs",  
+        "Apply the correct form of the verb as per the subject",  
+        "Analyse the sentence to see if the correct form of the verb is used as per the context"  
+      ]
+    },
+    {
+      "studentId": "4",
+      "studentName": "Akshitha P",
+      "grade": "7A",
+      "score": "47%",
+      "learningGaps": [
+        "Identify the usage of the given modal auxiliary",  
+        "Classify the given article as definite or indefinite",  
+        "Construct an abstract noun from a given word using a suffix",  
+        "Identify the correct cardinal",  
+        "Apply the correct quantifier as per the context",  
+        "Analyse whether the indefinite pronoun is used correctly",  
+        "Identify the correct common noun",  
+        "Identify the correct transitive verbs"  
+      ]
+    },
+    {
+      "studentId": "5",
+      "studentName": "Amrutha R",
+      "grade": "7A",
+      "score": "47%",
+      "learningGaps": [
+        "Identify the usage of the given modal auxiliary",  
+        "Classify the given article as definite or indefinite",  
+        "Identify the correct common noun",  
+        "Identify the correct emphatic pronoun",  
+        "Identify the correct adjective of quality",  
+        "Identify the type of the given determiner",  
+        "Classify a verb as singular or plural",  
+        "Identify the correct demonstrative adjective"  
+      ]
+    },
+    {
+      "studentId": "2",
+      "studentName": "Akhil M",
+      "grade": "7A",
+      "score": "46%",
+      "learningGaps": [
+        "Identify the usage of the given modal auxiliary",  
+        "Classify the given article as definite or indefinite",  
+        "Identify the sentences that use a positive degree of comparison",  
+        "Apply the correct degree of an adverb as per the given sentence",  
+        "Identify the type of given adverb",  
+        "Identify the correct transitive verbs",  
+        "Apply the correct form of the verb as per the subject",  
+        "Analyse the sentence to see if the correct form of the verb is used as per the context"  
+      ]
+    },
+    {
+      "studentId": "16",
+      "studentName": "M KUMAR",
+      "grade": "7A",
+      "score": "46%",
+      "learningGaps": [
+        "Identify the usage of the given modal auxiliary",  
+        "Classify the given article as definite or indefinite",  
+        "Construct an abstract noun from a given word using a suffix",  
+        "Identify the correct cardinal",  
+        "Apply the correct quantifier as per the context",  
+        "Analyse whether the indefinite pronoun is used correctly",  
+        "Identify the correct common noun",  
+        "Identify the correct transitive verbs"  
+      ]
+    },
+    {
+      "studentId": "18",
+      "studentName": "Marineni Lakshitha",
+      "grade": "7A",
+      "score": "46%",
+      "learningGaps": [
+        "Identify the usage of the given modal auxiliary",  
+        "Classify the given article as definite or indefinite",  
+        "Identify the correct common noun",  
+        "Identify the correct emphatic pronoun",  
+        "Identify the correct adjective of quality",  
+        "Identify the type of the given determiner",  
+        "Classify a verb as singular or plural",  
+        "Identify the correct demonstrative adjective"  
+      ]
+    },
+    {
+      "studentId": "20",
+      "studentName": "Mohit Gundla",
+      "grade": "7A",
+      "score": "44%",
+      "learningGaps": [
+        "Identify the usage of the given modal auxiliary",  
+        "Classify the given article as definite or indefinite",  
+        "Identify the correct common noun",  
+        "Identify the correct emphatic pronoun",  
+        "Identify the correct adjective of quality",  
+        "Identify the type of the given determiner",  
+        "Classify a verb as singular or plural",  
+        "Identify the correct demonstrative adjective"  
+      ]
+    },
+    {
+      "studentId": "30",
+      "studentName": "SRINIVAS G",
+      "grade": "7A",
+      "score": "44%",
+      "learningGaps": [
+        "Identify the usage of the given modal auxiliary",  
+        "Classify the given article as definite or indefinite",  
+        "Construct an abstract noun from a given word using a suffix",  
+        "Identify the correct cardinal",  
+        "Apply the correct quantifier as per the context",  
+        "Analyse whether the indefinite pronoun is used correctly",  
+        "Identify the correct common noun",  
+        "Identify the correct transitive verbs"  
+      ]
+    },
+    {
+      "studentId": "10",
+      "studentName": "Charitha B",
+      "grade": "7A",
+      "score": "43%",
+      "learningGaps": [
+        "Identify the usage of the given modal auxiliary",  
+        "Classify the given article as definite or indefinite",  
+        "Identify the sentences that use a positive degree of comparison",  
+        "Apply the correct degree of an adverb as per the given sentence",  
+        "Identify the type of given adverb",  
+        "Identify the correct transitive verbs",  
+        "Apply the correct form of the verb as per the subject",  
+        "Analyse the sentence to see if the correct form of the verb is used as per the context"  
+      ]
+    },
+    {
+      "studentId": "35",
+      "studentName": "Venkata Lakshmi",
+      "grade": "7A",
+      "score": "42%",
+      "learningGaps": [
+        "Identify the usage of the given modal auxiliary",  
+        "Classify the given article as definite or indefinite",  
+        "Identify the correct common noun",  
+        "Identify the correct emphatic pronoun",  
+        "Identify the correct adjective of quality",  
+        "Identify the type of the given determiner",  
+        "Classify a verb as singular or plural",  
+        "Identify the correct demonstrative adjective"  
+      ]
+    },
+    {
+      "studentId": "17",
+      "studentName": "Manvir",
+      "grade": "7A",
+      "score": "42%",
+      "learningGaps": [
+        "Identify the usage of the given modal auxiliary",  
+        "Classify the given article as definite or indefinite",  
+        "Construct an abstract noun from a given word using a suffix",  
+        "Identify the correct cardinal",  
+        "Apply the correct quantifier as per the context",  
+        "Analyse whether the indefinite pronoun is used correctly",  
+        "Identify the correct common noun",  
+        "Identify the correct transitive verbs"  
+      ]
+    },
+    {
+      "studentId": "29",
+      "studentName": "Shreyas",
+      "grade": "7A",
+      "score": "41%",
+      "learningGaps": [
+        "Identify the usage of the given modal auxiliary",  
+        "Classify the given article as definite or indefinite",  
+        "Identify the sentences that use a positive degree of comparison",  
+        "Apply the correct degree of an adverb as per the given sentence",  
+        "Identify the type of given adverb",  
+        "Identify the correct transitive verbs",  
+        "Apply the correct form of the verb as per the subject",  
+        "Analyse the sentence to see if the correct form of the verb is used as per the context"  
+      ]
+    },
+    {
+      "studentId": "8",
+      "studentName": "Brunda",
+      "grade": "7A",
+      "score": "39%",
+      "learningGaps": [
+        "Identify the usage of the given modal auxiliary",  
+        "Classify the given article as definite or indefinite",  
+        "Identify the correct common noun",  
+        "Identify the correct emphatic pronoun",  
+        "Identify the correct adjective of quality",  
+        "Identify the type of the given determiner",  
+        "Classify a verb as singular or plural",  
+        "Identify the correct demonstrative adjective"  
+      ]
+    },
+    {
+      "studentId": "13",
+      "studentName": "Joies Thripura",
+      "grade": "7A",
+      "score": "39%",
+      "learningGaps": [
+        "Identify the usage of the given modal auxiliary",  
+        "Classify the given article as definite or indefinite",  
+        "Construct an abstract noun from a given word using a suffix",  
+        "Identify the correct cardinal",  
+        "Apply the correct quantifier as per the context",  
+        "Analyse whether the indefinite pronoun is used correctly",  
+        "Identify the correct common noun",  
+        "Identify the correct transitive verbs"  
+      ]
+    },
+    {
+      "studentId": "1",
+      "studentName": "Abhiram",
+      "grade": "7A",
+      "score": "38%",
+      "learningGaps": [
+        "Identify the usage of the given modal auxiliary",  
+        "Classify the given article as definite or indefinite",  
+        "Identify the sentences that use a positive degree of comparison",  
+        "Apply the correct degree of an adverb as per the given sentence",  
+        "Identify the type of given adverb",  
+        "Identify the correct transitive verbs",  
+        "Apply the correct form of the verb as per the subject",  
+        "Analyse the sentence to see if the correct form of the verb is used as per the context"  
+      ]
+    },
+    {
+      "studentId": "34",
+      "studentName": "U VISHRUTH",
+      "grade": "7A",
+      "score": "38%",
+      "learningGaps": [
+        "Identify the usage of the given modal auxiliary",  
+        "Classify the given article as definite or indefinite",  
+        "Identify the correct common noun",  
+        "Identify the correct emphatic pronoun",  
+        "Identify the correct adjective of quality",  
+        "Identify the type of the given determiner",  
+        "Classify a verb as singular or plural",  
+        "Identify the correct demonstrative adjective"  
+      ]
+    },
+    {
+      "studentId": "14",
+      "studentName": "Kavya Verma",
+      "grade": "7A",
+      "score": "37%",
+      "learningGaps": [
+        "Identify the usage of the given modal auxiliary",  
+        "Classify the given article as definite or indefinite",  
+        "Identify the sentences that use a positive degree of comparison",  
+        "Apply the correct degree of an adverb as per the given sentence",  
+        "Identify the type of given adverb",  
+        "Identify the correct transitive verbs",  
+        "Apply the correct form of the verb as per the subject",  
+        "Analyse the sentence to see if the correct form of the verb is used as per the context"  
+      ]
+    },
+    {
+      "studentId": "26",
+      "studentName": "Saketh P",
+      "grade": "7A",
+      "score": "37%",
+      "learningGaps": [
+        "Identify the usage of the given modal auxiliary",  
+        "Classify the given article as definite or indefinite",  
+        "Identify the correct common noun",  
+        "Identify the correct emphatic pronoun",  
+        "Identify the correct adjective of quality",  
+        "Identify the type of the given determiner",  
+        "Classify a verb as singular or plural",  
+        "Identify the correct demonstrative adjective"  
+      ]
+    },
+    {
+      "studentId": "28",
+      "studentName": "SATVI NAIK",
+      "grade": "7A",
+      "score": "37%",
+      "learningGaps": [
+        "Identify the usage of the given modal auxiliary",  
+        "Classify the given article as definite or indefinite",  
+        "Construct an abstract noun from a given word using a suffix",  
+        "Identify the correct cardinal",  
+        "Apply the correct quantifier as per the context",  
+        "Analyse whether the indefinite pronoun is used correctly",  
+        "Identify the correct common noun",  
+        "Identify the correct transitive verbs"  
+      ]
+    },
+    {
+      "studentId": "31",
+      "studentName": "Suggu Reddy",
+      "grade": "7A",
+      "score": "37%",
+      "learningGaps": [
+        "Identify the usage of the given modal auxiliary",  
+        "Classify the given article as definite or indefinite",  
+        "Identify the sentences that use a positive degree of comparison",  
+        "Apply the correct degree of an adverb as per the given sentence",  
+        "Identify the type of given adverb",  
+        "Identify the correct transitive verbs",  
+        "Apply the correct form of the verb as per the subject",  
+        "Analyse the sentence to see if the correct form of the verb is used as per the context"  
+      ]
+    },
+    {
+      "studentId": "7",
+      "studentName": "Architha Malla",
+      "grade": "7A",
+      "score": "36%",
+      "learningGaps": [
+        "Identify the usage of the given modal auxiliary",  
+        "Classify the given article as definite or indefinite",  
+        "Identify the correct common noun",  
+        "Identify the correct emphatic pronoun",  
+        "Identify the correct adjective of quality",  
+        "Identify the type of the given determiner",  
+        "Classify a verb as singular or plural",  
+        "Identify the correct demonstrative adjective"  
+      ]
+    },
+    {
+      "studentId": "36",
+      "studentName": "Vinamrutha",
+      "grade": "7A",
+      "score": "36%",
+      "learningGaps": [
+        "Identify the usage of the given modal auxiliary",  
+        "Classify the given article as definite or indefinite",  
+        "Construct an abstract noun from a given word using a suffix",  
+        "Identify the correct cardinal",  
+        "Apply the correct quantifier as per the context",  
+        "Analyse whether the indefinite pronoun is used correctly",  
+        "Identify the correct common noun",  
+        "Identify the correct transitive verbs"  
+      ]
+    },
+    {
+      "studentId": "15",
+      "studentName": "L REDDY",
+      "grade": "7A",
+      "score": "35%",
+      "learningGaps": [
+        "Identify the usage of the given modal auxiliary",  
+        "Classify the given article as definite or indefinite",  
+        "Identify the sentences that use a positive degree of comparison",  
+        "Apply the correct degree of an adverb as per the given sentence",  
+        "Identify the type of given adverb",  
+        "Identify the correct transitive verbs",  
+        "Apply the correct form of the verb as per the subject",  
+        "Analyse the sentence to see if the correct form of the verb is used as per the context"  
+      ]
+    },
+    {
+      "studentId": "19",
+      "studentName": "Mithun Chakravarthy",
+      "grade": "7A",
+      "score": "34%",
+      "learningGaps": [
+        "Identify the usage of the given modal auxiliary",  
+        "Classify the given article as definite or indefinite",  
+        "Identify the correct common noun",  
+        "Identify the correct emphatic pronoun",  
+        "Identify the correct adjective of quality",  
+        "Identify the type of the given determiner",  
+        "Classify a verb as singular or plural",  
+        "Identify the correct demonstrative adjective"  
+      ]
+    },
+    {
+      "studentId": "22",
+      "studentName": "Omkar",
+      "grade": "7A",
+      "score": "34%",
+      "learningGaps": [
+        "Identify the usage of the given modal auxiliary",  
+        "Classify the given article as definite or indefinite",  
+        "Construct an abstract noun from a given word using a suffix",  
+        "Identify the correct cardinal",  
+        "Apply the correct quantifier as per the context",  
+        "Analyse whether the indefinite pronoun is used correctly",  
+        "Identify the correct common noun",  
+        "Identify the correct transitive verbs"  
+      ]
+    },
+    {
+      "studentId": "27",
+      "studentName": "SALAM SINGH",
+      "grade": "7A",
+      "score": "34%",
+      "learningGaps": [
+        "Identify the usage of the given modal auxiliary",  
+        "Classify the given article as definite or indefinite",  
+        "Identify the sentences that use a positive degree of comparison",  
+        "Apply the correct degree of an adverb as per the given sentence",  
+        "Identify the type of given adverb",  
+        "Identify the correct transitive verbs",  
+        "Apply the correct form of the verb as per the subject",  
+        "Analyse the sentence to see if the correct form of the verb is used as per the context"  
+      ]
+    },
+    {
+      "studentId": "11",
+      "studentName": "CR Nikitha",
+      "grade": "7A",
+      "score": "33%",
+      "learningGaps": [
+        "Identify the usage of the given modal auxiliary",  
+        "Classify the given article as definite or indefinite",  
+        "Identify the correct common noun",  
+        "Identify the correct emphatic pronoun",  
+        "Identify the correct adjective of quality",  
+        "Identify the type of the given determiner",  
+        "Classify a verb as singular or plural",  
+        "Identify the correct demonstrative adjective"  
+      ]
+    },
+    {
+      "studentId": "24",
+      "studentName": "Pranathi",
+      "grade": "7A",
+      "score": "33%",
+      "learningGaps": [
+        "Identify the usage of the given modal auxiliary",  
+        "Classify the given article as definite or indefinite",  
+        "Construct an abstract noun from a given word using a suffix",  
+        "Identify the correct cardinal",  
+        "Apply the correct quantifier as per the context",  
+        "Analyse whether the indefinite pronoun is used correctly",  
+        "Identify the correct common noun",  
+        "Identify the correct transitive verbs"  
+      ]
+    },
+    {
+      "studentId": "32",
+      "studentName": "TALLAM KARTHIK",
+      "grade": "7A",
+      "score": "32%",
+      "learningGaps": [
+        "Identify the usage of the given modal auxiliary",  
+        "Classify the given article as definite or indefinite",  
+        "Identify the sentences that use a positive degree of comparison",  
+        "Apply the correct degree of an adverb as per the given sentence",  
+        "Identify the type of given adverb",  
+        "Identify the correct transitive verbs",  
+        "Apply the correct form of the verb as per the subject",  
+        "Analyse the sentence to see if the correct form of the verb is used as per the context"  
+      ]
+    },
+    {
+      "studentId": "21",
+      "studentName": "Nani K",
+      "grade": "7A",
+      "score": "31%",
+      "learningGaps": [
+        "Identify the usage of the given modal auxiliary",  
+        "Classify the given article as definite or indefinite",  
+        "Identify the correct common noun",  
+        "Identify the correct emphatic pronoun",  
+        "Identify the correct adjective of quality",  
+        "Identify the type of the given determiner",  
+        "Classify a verb as singular or plural",  
+        "Identify the correct demonstrative adjective"  
+      ]
+    },
+    {
+      "studentId": "23",
+      "studentName": "P FARHAN",
+      "grade": "7A",
+      "score": "31%",
+      "learningGaps": [
+        "Identify the usage of the given modal auxiliary",  
+        "Classify the given article as definite or indefinite",  
+        "Construct an abstract noun from a given word using a suffix",  
+        "Identify the correct cardinal",  
+        "Apply the correct quantifier as per the context",  
+        "Analyse whether the indefinite pronoun is used correctly",  
+        "Identify the correct common noun",  
+        "Identify the correct transitive verbs"  
+      ]
+    },
+    {
+      "studentId": "25",
+      "studentName": "R NAGENDHRA",
+      "grade": "7A",
+      "score": "31%",
+      "learningGaps": [
+        "Identify the usage of the given modal auxiliary",  
+        "Classify the given article as definite or indefinite",  
+        "Identify the sentences that use a positive degree of comparison",  
+        "Apply the correct degree of an adverb as per the given sentence",  
+        "Identify the type of given adverb",  
+        "Identify the correct transitive verbs",  
+        "Apply the correct form of the verb as per the subject",  
+        "Analyse the sentence to see if the correct form of the verb is used as per the context"  
+      ]
+    }
+  ]
+}

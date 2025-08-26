@@ -1,0 +1,23 @@
+{
+  "gameId": "word_catcher_01",
+  "title": "Word Catcher",
+  "learningOutcomes": [
+    "identify nouns, verbs, and adjectives",
+    "develop reflex and focus through categorization"
+  ],
+  "keywords": [
+    "noun",
+    "verb",
+    "adjective",
+    "grammar",
+    "parts of speech",
+    "quiz",
+    "face control"
+  ],
+  "difficulty": "medium",
+  "configurableParameters": {
+    "highlightCorrectAnswer": "true",
+    "questionCount": "10",
+    "ballSpawnSpeed": "1.5"
+  }
+}

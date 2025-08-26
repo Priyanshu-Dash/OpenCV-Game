@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "1082493778299",
+    "firebase_url": "https://pupiltreesession-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "pupiltreesession",
+    "storage_bucket": "pupiltreesession.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1082493778299:android:af4af2744037a66294a5de",
+        "android_client_info": {
+          "package_name": "com.DefaultCompany.INCLASS"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDkLFttUQyYN1qY2g3JzylTcjVGUdGqeeY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

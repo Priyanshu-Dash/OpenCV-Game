@@ -1,0 +1,12 @@
+{
+  "gameId": "article_identifier_01",
+  "title": "Skater's Quiz",
+  "learningOutcomes": [
+    "classify definite and indefinite articles"
+  ],
+  "keywords": ["article", "a", "an", "the", "definite", "indefinite"],
+  "difficulty": "easy",
+  "configurableParameters": {
+    "highlight": "true"
+  }
+}

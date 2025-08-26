@@ -1,0 +1,12 @@
+{
+  "gameId": "adverb_identifier_01",
+  "title": "Space Quiz",
+  "learningOutcomes": [
+    "identify adverb types"
+  ],
+  "keywords": ["adverb", "manner", "place", "time", "degree", "frequency"],
+  "difficulty": "medium",
+  "configurableParameters": {
+    "highlight": "true"
+  }
+}

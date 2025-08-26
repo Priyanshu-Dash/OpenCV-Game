@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools" package="com.DefaultCompany.INCLASS">
+  <uses-permission android:name="android.permission.CAMERA" />
+  <uses-permission android:name="android.permission.RECORD_AUDIO" />
+  <uses-permission android:name="android.permission.INTERNET" />
+  <application>
+    <activity android:name="com.unity3d.player.UnityPlayerGameActivity" android:theme="@style/BaseUnityGameActivityTheme" android:exported="true" android:launchMode="singleTask">
+      <!-- Main launcher -->
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+        <category android:name="android.intent.category.LAUNCHER" />
+      </intent-filter>
+      <!-- Deep link intent -->
+      <intent-filter>
+        <action android:name="android.intent.action.VIEW" />
+        <category android:name="android.intent.category.DEFAULT" />
+        <category android:name="android.intent.category.BROWSABLE" />
+        <data android:scheme="yourapp" android:host="inclass" />
+        <data android:scheme="yourapp" android:host="athome" />
+      </intent-filter>
+      <meta-data android:name="unityplayer.UnityActivity" android:value="true" />
+      <meta-data android:name="android.app.lib_name" android:value="game" />
+    </activity>
+  </application>
+</manifest>

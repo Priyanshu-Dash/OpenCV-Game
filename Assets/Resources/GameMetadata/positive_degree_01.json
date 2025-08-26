@@ -1,0 +1,12 @@
+{
+  "gameId": "positive_degree_01",
+  "title": "Degree Dash",
+  "learningOutcomes": [
+    "positive degree of comparison"
+  ],
+  "keywords": ["positive", "degree", "comparison", "adjective"],
+  "difficulty": "medium",
+  "configurableParameters": {
+    "type": "adjective"
+  }
+}

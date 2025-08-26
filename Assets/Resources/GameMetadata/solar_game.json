@@ -1,0 +1,12 @@
+{
+    "gameId": "solar_game",
+    "title": "Solar Game",
+    "learningOutcomes": [
+        "Solor Planets" //can be more than one learning outcomes
+    ],
+    "keywords": [ "solor", "Planet", "earth", "time", "degree", "frequency" ],
+    "difficulty": "medium",
+    "configurableParameters": {
+        "highlight": "true"
+    }
+}

@@ -1,0 +1,13 @@
+{
+  "gameId": "modal_usage_01",
+  "title": "Modal Madness",
+  "learningOutcomes": [
+    "identify modal auxiliary",
+    "modal usage in sentences"
+  ],
+  "keywords": ["modal", "auxiliary", "can", "should", "must"],
+  "difficulty": "easy",
+  "configurableParameters": {
+    "tense": "present"
+  }
+}
