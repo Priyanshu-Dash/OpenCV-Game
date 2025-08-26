@@ -18,10 +18,12 @@ public class MagneticGameManager : MonoBehaviour
     [SerializeField] private GameObject LosePanel;
     
     [Header("Level System")]
-    [SerializeField] private TextMeshProUGUI levelText; // Display current level
     [SerializeField] private TextMeshProUGUI scoreText; // Display current score
+    [SerializeField] private TextMeshProUGUI healthText; // Display current health
     [SerializeField] private int currentLevel = 1;
     [SerializeField] private int currentScore = 0;
+    [SerializeField] private int currentHealth = 3; // Start with 3 lives
+    [SerializeField] private int maxHealth = 3; // Maximum health
     [SerializeField] private int pointsPerCorrectAnswer = 10;
     [SerializeField] private float levelRestartDelay = 2f; // Delay before restarting level
 
@@ -264,8 +266,14 @@ public class MagneticGameManager : MonoBehaviour
         }
         else
         {
+            Debug.Log("HandleAnswerResult: Wrong answer detected for " + objectName);
+            
             // Wrong answer - show failure feedback
             ShowFailureFeedback(objectName);
+            
+            // Decrease health for wrong answer
+            Debug.Log("HandleAnswerResult: Calling DecreaseHealth() for wrong answer");
+            DecreaseHealth();
             
             // Update question to show failure
             if (questionText != null)
@@ -278,7 +286,7 @@ public class MagneticGameManager : MonoBehaviour
             // For wrong answers, allow retry after a delay
             StartCoroutine(RetryLevelAfterDelay());
             
-            Debug.Log("💥 FAILURE: " + objectName + " is not magnetic. Wrong choice!");
+            Debug.Log("💥 FAILURE: " + objectName + " is not magnetic. Wrong choice! Health: " + currentHealth);
         }
         
         // You can add additional game logic here:
@@ -423,22 +431,14 @@ public class MagneticGameManager : MonoBehaviour
     {
         currentLevel = 1;
         currentScore = 0;
+        currentHealth = maxHealth; // Reset health to max
         isLevelComplete = false;
         isWaitingForRestart = false;
         
-        UpdateLevelUI();
         UpdateScoreUI();
+        UpdateHealthUI(); // Initialize health UI
         
         Debug.Log("Level system initialized - Starting at Level " + currentLevel);
-    }
-    
-    // Update the level display
-    private void UpdateLevelUI()
-    {
-        if (levelText != null)
-        {
-            levelText.text = "Level " + currentLevel;
-        }
     }
     
     // Update the score display
@@ -449,6 +449,15 @@ public class MagneticGameManager : MonoBehaviour
             scoreText.text = "Score: " + currentScore;
         }
     }
+
+    // Update the health display
+    private void UpdateHealthUI()
+    {
+        if (healthText != null)
+        {
+            healthText.text = "Health: " + currentHealth + "/" + maxHealth;
+        }
+    }
     
     // Update the score
     public void UpdateScore(int points)
@@ -457,11 +466,74 @@ public class MagneticGameManager : MonoBehaviour
         UpdateScoreUI();
         Debug.Log("Score updated: +" + points + " points. Total: " + currentScore);
     }
+
+    // Decrease health
+    public void DecreaseHealth()
+    {
+        Debug.Log("DecreaseHealth() called. Current health before: " + currentHealth);
+        
+        if (currentHealth > 0)
+        {
+            currentHealth--;
+            UpdateHealthUI();
+            Debug.Log("Health decreased. Current health after: " + currentHealth);
+            
+            // Check if game is over
+            if (currentHealth <= 0)
+            {
+                Debug.Log("Health reached 0, calling GameOver()");
+                GameOver();
+            }
+        }
+        else
+        {
+            Debug.Log("Cannot decrease health - already at 0");
+        }
+    }
+    
+    // Handle game over
+    private void GameOver()
+    {
+        Debug.Log("💀 GAME OVER! No more lives remaining.");
+        
+        // Show game over panel if available
+        if (LosePanel != null)
+        {
+            LosePanel.SetActive(true);
+        }
+        
+        // Update question text to show game over
+        if (questionText != null)
+        {
+            questionText.text = "💀 Game Over! No more lives!";
+        }
+        
+        // Stop the game - no more levels can be played
+        isLevelComplete = true;
+        isWaitingForRestart = true;
+    }
+    
+    // Check if game is over
+    public bool IsGameOver()
+    {
+        return currentHealth <= 0;
+    }
+    
+    // Restore health (for power-ups or special events)
+    public void RestoreHealth(int amount = 1)
+    {
+        if (currentHealth < maxHealth)
+        {
+            currentHealth = Mathf.Min(currentHealth + amount, maxHealth);
+            UpdateHealthUI();
+            Debug.Log("Health restored by " + amount + ". Current health: " + currentHealth);
+        }
+    }
     
     // Complete the current level
     private void CompleteLevel()
     {
-        if (isLevelComplete || isWaitingForRestart) return;
+        if (isLevelComplete || isWaitingForRestart || IsGameOver()) return;
         
         isLevelComplete = true;
         Debug.Log("🎯 LEVEL " + currentLevel + " COMPLETED! Score: " + currentScore);
@@ -509,9 +581,6 @@ public class MagneticGameManager : MonoBehaviour
         if (WinPanel != null) WinPanel.SetActive(false);
         if (LosePanel != null) LosePanel.SetActive(false);
         
-        // Update UI
-        UpdateLevelUI();
-        
         // Reset for new level
         ResetForNextRound();
         
@@ -529,12 +598,19 @@ public class MagneticGameManager : MonoBehaviour
     {
         return currentScore;
     }
+
+    // Get current health
+    public int GetCurrentHealth()
+    {
+        return currentHealth;
+    }
     
     // Reset the entire game (start over from level 1)
     public void ResetGame()
     {
         currentLevel = 1;
         currentScore = 0;
+        currentHealth = maxHealth; // Reset health to max
         isLevelComplete = false;
         isWaitingForRestart = false;
         
@@ -543,8 +619,8 @@ public class MagneticGameManager : MonoBehaviour
         if (LosePanel != null) LosePanel.SetActive(false);
         
         // Update UI
-        UpdateLevelUI();
         UpdateScoreUI();
+        UpdateHealthUI(); // Reset health UI
         
         // Reset for new game
         ResetForNextRound();
@@ -559,12 +635,49 @@ public class MagneticGameManager : MonoBehaviour
         
         currentLevel = targetLevel;
         currentScore = (targetLevel - 1) * pointsPerCorrectAnswer;
+        currentHealth = maxHealth; // Reset health to max
         
-        UpdateLevelUI();
         UpdateScoreUI();
+        UpdateHealthUI(); // Reset health UI
         
         ResetForNextRound();
         
-        Debug.Log("⏭️ Skipped to Level " + targetLevel + " with Score " + currentScore);
+        Debug.Log("⏭️ Skipped to Level " + targetLevel + " with Score " + currentLevel);
+    }
+    
+    // Restart game after game over
+    public void RestartGameAfterGameOver()
+    {
+        if (IsGameOver())
+        {
+            Debug.Log("🔄 Restarting game after game over...");
+            ResetGame();
+        }
+    }
+    
+    // Get maximum health
+    public int GetMaxHealth()
+    {
+        return maxHealth;
+    }
+    
+    // Check if player has full health
+    public bool HasFullHealth()
+    {
+        return currentHealth >= maxHealth;
+    }
+    
+    // Test method to manually decrease health (for debugging)
+    public void TestDecreaseHealth()
+    {
+        Debug.Log("TestDecreaseHealth() called manually");
+        DecreaseHealth();
+    }
+    
+    // Test method to manually increase health (for debugging)
+    public void TestIncreaseHealth()
+    {
+        Debug.Log("TestIncreaseHealth() called manually");
+        RestoreHealth(1);
     }
 }
