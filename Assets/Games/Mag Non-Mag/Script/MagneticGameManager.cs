@@ -16,6 +16,9 @@ public class MagneticGameManager : MonoBehaviour
     [Header("UI Elements")]
     [SerializeField] private GameObject WinPanel;
     [SerializeField] private GameObject LosePanel;
+
+    [SerializeField] private GameObject FinalWinScreen;
+    [SerializeField] private GameObject FinalLoseScreen;
     
     [Header("Level System")]
     [SerializeField] private TextMeshProUGUI scoreText; // Display current score
@@ -61,6 +64,8 @@ public class MagneticGameManager : MonoBehaviour
     
     void Start()
     {
+        FinalWinScreen.SetActive(false);
+        FinalLoseScreen.SetActive(false);
         // Check if images are assigned
         if (leftImage == null)
             Debug.LogWarning("Left Image not assigned!");
@@ -794,13 +799,14 @@ public class MagneticGameManager : MonoBehaviour
     // Handle game over
     private void GameOver()
     {
+        FinalLoseScreen.SetActive(true);
         Debug.Log("💀 GAME OVER! No more lives remaining.");
         
-        // Show game over panel if available
-        if (LosePanel != null)
-        {
-            LosePanel.SetActive(true);
-        }
+        // // Show game over panel if available
+        // if (LosePanel != null)
+        // {
+        //     LosePanel.SetActive(true);
+        // }
         
         // Update question text to show game over
         if (questionText != null)
@@ -816,13 +822,14 @@ public class MagneticGameManager : MonoBehaviour
     // Handle game win
     private void GameWin()
     {
+        FinalWinScreen.SetActive(true);
         Debug.Log("🏆 GAME WIN! You answered " + totalCorrectAnswers + " questions correctly!");
         
         // Show win panel if available
-        if (WinPanel != null)
-        {
-            WinPanel.SetActive(true);
-        }
+        // if (WinPanel != null)
+        // {
+        //     WinPanel.SetActive(true);
+        // }
         
         // Update question text to show victory
         if (questionText != null)
