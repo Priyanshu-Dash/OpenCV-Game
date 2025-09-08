@@ -23,6 +23,9 @@ public class HandImagePositioner : MonoBehaviour
     
     [Header("Visibility Settings")]
     [SerializeField] private bool hideWhenHandNotDetected = true; // Hide image when hand is not detected
+    [SerializeField] private bool hideWhenHandOutOfCamera = true; // Hide image when hand is outside camera view
+    [SerializeField] private bool hideWhenHandBehindCamera = true; // Hide image when hand is behind camera
+    [SerializeField] private bool enableDebugLogs = true; // Enable debug logging
     
     private RectTransform rectTransform; // For UI Image
     private Transform imageTransform; // For regular GameObject
@@ -77,46 +80,130 @@ public class HandImagePositioner : MonoBehaviour
     void Update()
     {
         if (!isInitialized || hands == null || imageGameObject == null)
-            return;
-            
-        // Simple approach like FollowHand.cs - just check if hands exist and get the specified hand
-        if (hands.count == 0 || handIndex >= hands.count || hands[handIndex] == null)
         {
-            // Hide the image if hand is not detected and setting is enabled
-            if (hideWhenHandNotDetected && imageGameObject.activeSelf)
-            {
-                Debug.Log("HandImagePositioner: Hand lost - hiding image");
-                imageGameObject.SetActive(false);
-            }
+            if (enableDebugLogs)
+                Debug.Log("HandImagePositioner: Not initialized or missing components");
+            return;
+        }
+        
+        // Debug hand count
+        if (enableDebugLogs)
+            Debug.Log($"HandImagePositioner: Hands detected: {hands.count}");
+            
+        // Check if hands are detected
+        if (hands.count == 0)
+        {
+            HideImageIfNeeded("No hands detected");
+            return;
+        }
+        
+        if (handIndex >= hands.count)
+        {
+            HideImageIfNeeded($"Hand index {handIndex} out of range (max: {hands.count - 1})");
+            return;
+        }
+        
+        if (hands[handIndex] == null)
+        {
+            HideImageIfNeeded($"Hand at index {handIndex} is null");
             return;
         }
 
         // Get landmark point for the specified hand
         var point = hands[handIndex][landmarkIndex];
 
-        if (point == null || !point.gameObject.activeSelf)
+        if (point == null)
         {
-            // Hide the image if landmark is not active
-            if (hideWhenHandNotDetected && imageGameObject.activeSelf)
-            {
-                Debug.Log("HandImagePositioner: Hand landmark not active - hiding image");
-                imageGameObject.SetActive(false);
-            }
+            HideImageIfNeeded($"Landmark {landmarkIndex} is null");
+            return;
+        }
+        
+        if (!point.gameObject.activeSelf)
+        {
+            HideImageIfNeeded($"Landmark {landmarkIndex} is not active");
             return;
         }
 
-        // Show the image if it was hidden
+        // Check if hand is visible in camera view
+        Vector3 handWorldPosition = point.transform.position + offset;
+        bool isVisible = IsHandVisibleInCamera(handWorldPosition);
+        
+        if (enableDebugLogs)
+        {
+            Vector3 screenPos = mainCamera.WorldToScreenPoint(handWorldPosition);
+            Debug.Log($"HandImagePositioner: Hand position - World: {handWorldPosition}, Screen: {screenPos}, Visible: {isVisible}");
+        }
+        
+        if (!isVisible)
+        {
+            HideImageIfNeeded("Hand not visible in camera");
+            return;
+        }
+
+        // Show the image if it was hidden and hand is now visible
         if (hideWhenHandNotDetected && !imageGameObject.activeSelf)
         {
-            Debug.Log("HandImagePositioner: Hand detected - showing image");
+            if (enableDebugLogs)
+                Debug.Log("HandImagePositioner: Hand detected and visible - showing image");
             imageGameObject.SetActive(true);
         }
         
         // Position the image at the hand location
-        PositionImageAtHand(point.transform.position + offset);
+        PositionImageAtHand(handWorldPosition);
     }
     
-
+    void HideImageIfNeeded(string reason)
+    {
+        if (hideWhenHandNotDetected && imageGameObject.activeSelf)
+        {
+            if (enableDebugLogs)
+                Debug.Log($"HandImagePositioner: {reason} - hiding image");
+            imageGameObject.SetActive(false);
+        }
+        else if (enableDebugLogs && !hideWhenHandNotDetected)
+        {
+            Debug.Log($"HandImagePositioner: {reason} - but hideWhenHandNotDetected is disabled");
+        }
+    }
+    
+    bool IsHandVisibleInCamera(Vector3 handWorldPosition)
+    {
+        // Convert world position to screen position
+        Vector3 screenPosition = mainCamera.WorldToScreenPoint(handWorldPosition);
+        
+        if (enableDebugLogs)
+        {
+            Debug.Log($"HandImagePositioner: Visibility check - Screen: {screenPosition}, " +
+                     $"Behind camera: {screenPosition.z < 0}, " +
+                     $"Outside bounds: {screenPosition.x < 0 || screenPosition.x > UnityEngine.Screen.width || screenPosition.y < 0 || screenPosition.y > UnityEngine.Screen.height}");
+        }
+        
+        // Check if hand is behind camera
+        if (hideWhenHandBehindCamera && screenPosition.z < 0)
+        {
+            if (enableDebugLogs)
+                Debug.Log("HandImagePositioner: Hand is behind camera");
+            return false;
+        }
+        
+        // Check if hand is outside camera viewport
+        if (hideWhenHandOutOfCamera)
+        {
+            // Check if position is outside screen bounds
+            if (screenPosition.x < 0 || screenPosition.x > UnityEngine.Screen.width ||
+                screenPosition.y < 0 || screenPosition.y > UnityEngine.Screen.height)
+            {
+                if (enableDebugLogs)
+                    Debug.Log($"HandImagePositioner: Hand is outside camera bounds - X: {screenPosition.x}/{UnityEngine.Screen.width}, Y: {screenPosition.y}/{UnityEngine.Screen.height}");
+                return false;
+            }
+        }
+        
+        if (enableDebugLogs)
+            Debug.Log("HandImagePositioner: Hand is visible in camera");
+        
+        return true;
+    }
     
     void PositionImageAtHand(Vector3 handWorldPosition)
     {
@@ -139,35 +226,35 @@ public class HandImagePositioner : MonoBehaviour
         // Convert world position to screen position
         Vector3 screenPosition = mainCamera.WorldToScreenPoint(worldPosition);
         
-        // Make sure the point is in front of the camera
-        if (screenPosition.z > 0)
+        // Convert screen position to Canvas position
+        Vector2 canvasPosition;
+        Canvas canvas = rectTransform.GetComponentInParent<Canvas>();
+        
+        if (canvas != null)
         {
-            // Convert screen position to Canvas position
-            Vector2 canvasPosition;
-            Canvas canvas = rectTransform.GetComponentInParent<Canvas>();
-            
-            if (canvas != null)
-            {
-                RectTransformUtility.ScreenPointToLocalPointInRectangle(
-                    canvas.transform as RectTransform,
-                    screenPosition,
-                    canvas.worldCamera,
-                    out canvasPosition
-                );
+            // Handle different canvas render modes
+            Camera canvasCamera = canvas.renderMode == RenderMode.ScreenSpaceOverlay ? 
+                null : canvas.worldCamera;
                 
-                // Apply movement (smooth or instant)
-                if (smoothMovement)
-                {
-                    rectTransform.localPosition = Vector3.Lerp(
-                        rectTransform.localPosition, 
-                        canvasPosition, 
-                        Time.deltaTime * followSpeed
-                    );
-                }
-                else
-                {
-                    rectTransform.localPosition = canvasPosition;
-                }
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(
+                canvas.transform as RectTransform,
+                screenPosition,
+                canvasCamera,
+                out canvasPosition
+            );
+            
+            // Apply movement (smooth or instant)
+            if (smoothMovement)
+            {
+                rectTransform.localPosition = Vector3.Lerp(
+                    rectTransform.localPosition, 
+                    canvasPosition, 
+                    Time.deltaTime * followSpeed
+                );
+            }
+            else
+            {
+                rectTransform.localPosition = canvasPosition;
             }
         }
     }

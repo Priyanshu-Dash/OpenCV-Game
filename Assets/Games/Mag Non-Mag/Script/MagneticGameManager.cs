@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections;
+using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class MagneticGameManager : MonoBehaviour
 {
@@ -19,6 +21,13 @@ public class MagneticGameManager : MonoBehaviour
 
     [SerializeField] private GameObject FinalWinScreen;
     [SerializeField] private GameObject FinalLoseScreen;
+    
+    [Header("Game Events")]
+    [SerializeField] private UnityEvent OnFinalWinScreen;
+    [SerializeField] private UnityEvent OnFinalLoseScreen;
+    
+    [Header("Scene Management")]
+    [SerializeField] private string atHomeSceneName = "AtHome";
     
     [Header("Level System")]
     [SerializeField] private TextMeshProUGUI scoreText; // Display current score
@@ -760,7 +769,7 @@ public class MagneticGameManager : MonoBehaviour
     {
         if (healthText != null)
         {
-            healthText.text = "Health: " + currentHealth + "/" + maxHealth;
+            healthText.text =  currentHealth + "/" + maxHealth;
         }
     }
     
@@ -802,6 +811,9 @@ public class MagneticGameManager : MonoBehaviour
         FinalLoseScreen.SetActive(true);
         Debug.Log("💀 GAME OVER! No more lives remaining.");
         
+        // Trigger the final lose screen event
+        OnFinalLoseScreen?.Invoke();
+        
         // // Show game over panel if available
         // if (LosePanel != null)
         // {
@@ -824,6 +836,9 @@ public class MagneticGameManager : MonoBehaviour
     {
         FinalWinScreen.SetActive(true);
         Debug.Log("🏆 GAME WIN! You answered " + totalCorrectAnswers + " questions correctly!");
+        
+        // Trigger the final win screen event
+        OnFinalWinScreen?.Invoke();
         
         // Show win panel if available
         // if (WinPanel != null)
@@ -1067,5 +1082,85 @@ public class MagneticGameManager : MonoBehaviour
         Debug.Log("Current Question Type: " + GetCurrentQuestionType());
         Debug.Log("Current Question Text: " + GetCurrentQuestion());
         Debug.Log("Correct Answer: " + GetCorrectAnswer());
+    }
+    
+    // Public methods to manually trigger final screen events
+    public void TriggerFinalWinScreenEvent()
+    {
+        OnFinalWinScreen?.Invoke();
+        Debug.Log("Final Win Screen event triggered manually");
+    }
+    
+    public void TriggerFinalLoseScreenEvent()
+    {
+        OnFinalLoseScreen?.Invoke();
+        Debug.Log("Final Lose Screen event triggered manually");
+    }
+    
+    // Restart game methods for button clicks
+    public void RestartGame()
+    {
+        Debug.Log("🔄 Restarting game from button click...");
+        
+        // Hide final screens
+        if (FinalWinScreen != null) FinalWinScreen.SetActive(false);
+        if (FinalLoseScreen != null) FinalLoseScreen.SetActive(false);
+        
+        // Reset the entire game
+        ResetGame();
+        
+        Debug.Log("✅ Game restarted successfully!");
+    }
+    
+    public void RestartGameFromWin()
+    {
+        Debug.Log("🔄 Restarting game from win screen...");
+        RestartGame();
+    }
+    
+    public void RestartGameFromLose()
+    {
+        Debug.Log("🔄 Restarting game from lose screen...");
+        RestartGame();
+    }
+    
+    // Quick restart methods for different scenarios
+    public void QuickRestart()
+    {
+        Debug.Log("⚡ Quick restart triggered...");
+        RestartGame();
+    }
+    
+    public void RestartWithNewQuestion()
+    {
+        Debug.Log("🔄 Restarting with new question...");
+        
+        // Hide final screens
+        if (FinalWinScreen != null) FinalWinScreen.SetActive(false);
+        if (FinalLoseScreen != null) FinalLoseScreen.SetActive(false);
+        
+        // Reset game state
+        ResetGame();
+        
+        // Force new question display
+        if (showQuestions)
+        {
+            DisplayRandomQuestion();
+        }
+        
+        Debug.Log("✅ Game restarted with new question!");
+    }
+    
+    // Simple scene transition to AtHome
+    public void GoToAtHome()
+    {
+        Debug.Log("🏠 Transitioning to AtHome scene...");
+        SceneManager.LoadScene(atHomeSceneName);
+    }
+    
+    // Alternative method name for button clicks
+    public void LoadAtHomeScene()
+    {
+        GoToAtHome();
     }
 }

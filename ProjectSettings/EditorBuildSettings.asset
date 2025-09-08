@@ -11,7 +11,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/AtHome.unity
     guid: 99c9720ab356a0642a771bea13969a05
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/gamemaker.unity
     guid: 3f4fb5da9c22b7e45962d009961142ae
   - enabled: 0
@@ -20,6 +20,9 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/InClassGames.unity
     guid: 1b9a47d0599379249937013c56a34626
+  - enabled: 1
+    path: Assets/Games/Mag Non-Mag/New Scene.unity
+    guid: 82aebc312f8f3454c8748cec1b24ef14
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
